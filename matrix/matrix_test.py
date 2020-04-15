@@ -38,6 +38,29 @@ class MatrixTest(unittest.TestCase):
         matrix = Matrix("89 1903 3\n18 3 1\n9 4 800")
         self.assertEqual(matrix.column(2), [1903, 3, 4])
 
+    def test_bad_case(self):
+        try:
+            m = Matrix(1)
+        except TypeError:
+            pass
+        except e:
+            self.fail()
+
+    def test_bad_case1(self):
+        try:
+            m = Matrix([1, 2, 3])
+        except TypeError:
+            pass
+        except e:
+            self.fail()
+
+    def test_edge_case(self):
+        m = Matrix("")
+        self.assertEqual(m.row(0), [])
+
+    def test_edge_case_1(self):
+        m = Matrix("1 2\n3 4")
+        self.assertEqual(m.row(0), [])
 
 if __name__ == "__main__":
     unittest.main()

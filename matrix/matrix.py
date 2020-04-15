@@ -1,9 +1,15 @@
 class Matrix:
     def __init__(self, matrix_string):
+        if type(matrix_string) != str:
+            raise TypeError("incorrect argument type for: ", matrix_string )
         self.matrix = []
-        self.make_matrix(matrix_string)
+        self.matrix = self.make_matrix(matrix_string)
 
     def row(self, index):
+        if index == 0:
+            return []
+        if index - 1 >= len(self.matrix):
+            return []
         return self.matrix[index - 1]
 
     def column(self, index):
@@ -13,6 +19,8 @@ class Matrix:
         return ret
 
     def make_matrix(self, string):
+        if len(string) == 0:
+            return []
         string = string.split(' ')
         matrix = []
         i = 0
@@ -29,7 +37,7 @@ class Matrix:
                 i += 1
             else:
                 matrix[i].append(int(string[j]))
-        self.matrix = matrix
+        return matrix
 
 if __name__ == "__main__":
     m = Matrix('1 2\n3 4')
